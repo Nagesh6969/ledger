@@ -54,6 +54,6 @@ const PORT = process.env.PORT || 5000;
 
 connectDB().then(() => {
   app.listen(PORT, () => {
-    console.log(`Finance Assistant API running on http://localhost:${PORT}`);
+    console.log(`Finance Assistant API running on port ${PORT}`);
   });
 });
