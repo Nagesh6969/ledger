@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-body antialiased;
+  }
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+  /* Tabular figures everywhere money is shown, so digits align like a real ledger */
+  .num {
+    font-family: "IBM Plex Mono", monospace;
+    font-feature-settings: "tnum";
+  }
+}
+
+@layer components {
+  /* Signature element: a "receipt" card with a perforated top edge,
+     used for stat cards and entries throughout the app. */
+  .receipt-card {
+    @apply relative bg-white rounded-lg shadow-receipt;
+  }
+  .receipt-card::before {
+    content: "";
+    position: absolute;
+    top: -1px;
+    left: 0;
+    right: 0;
+    height: 6px;
+    background-image: radial-gradient(circle, #F7F2EA 3px, transparent 3.5px);
+    background-size: 14px 6px;
+    background-repeat: repeat-x;
+    background-position: center;
+  }
+
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-[0.14em] text-inkSoft/70;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-forest px-4 py-2.5
+      text-sm font-semibold text-paper transition-colors hover:bg-forest-light
+      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold
+      disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-ink/15 bg-white px-4 py-2.5
+      text-sm font-semibold text-ink transition-colors hover:bg-paperDark
+      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-forest;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-semibold
+      text-rust transition-colors hover:bg-rust/10
+      focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rust;
+  }
+
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-inkSoft;
+  }
+  .field-input {
+    @apply w-full rounded-md border border-ink/15 bg-white px-3 py-2.5 text-sm text-ink
+      placeholder:text-ink/35 focus:border-forest focus:outline-none focus:ring-2 focus:ring-forest/20;
+  }
+
+  .tag-pill {
+    @apply inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
